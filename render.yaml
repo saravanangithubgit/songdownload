@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: flask-music-api
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    healthCheckPath: "/"
+    region: oregon  # Choose the region closest to your users (optional)
+    manualDeploy: false  # You can set this to true if you want to manually deploy

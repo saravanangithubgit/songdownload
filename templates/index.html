@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Request</title>
+</head>
+<body>
+    <!-- Image section -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <img src="{{ url_for('static', filename='rab.jpg') }}" alt="Song Image" style="max-width: 300px; height: auto;">
+    </div>
+
+    <!-- Form to request song -->
+    <h1>Enter Song Name</h1>
+    <form id="songForm">
+        <label for="song_name">Song Name:</label>
+        <input type="text" id="song_name" name="song_name" required>
+        <button type="submit">Download Song</button>
+    </form>
+    <h4>Dhrumil Bhanat</h4>
+
+    <script>
+        document.getElementById("songForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+            const songName = document.getElementById("song_name").value.trim();
+
+            if (songName) {
+                // Redirect to the Flask API with the song name
+                const url = `http://127.0.0.1:5000/get_song?song_name=${encodeURIComponent(songName)}`;
+                window.location.href = url;  // Redirect to the generated URL
+            } else {
+                alert("Please enter a song name.");
+            }
+        });
+    </script>
+</body>
+</html>
